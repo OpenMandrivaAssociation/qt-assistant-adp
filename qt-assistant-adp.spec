@@ -15,7 +15,7 @@ Source2: QtAssistant
 Patch1: 01_build_system.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: qt4-devel >= 4:4.7.0
-Conflicts: qt4-assistant <= 4:4.6.3
+Conflicts: qt4-assistant < 4:4.6.3
 
 %description
 The old version of Qt Assistant, based on Assistant Document Profile (.adp)
@@ -29,7 +29,6 @@ New applications should use the new version of Qt Assistant introduced in Qt
 %package -n %{libqassistant}
 Summary: QT assistant lib
 Group: System/Libraries
-Requires(pre): qt4-common = %epoch:%version
 Provides: qassistantlib = %epoch:%version
 Obsoletes: %{_lib}qassistant1 < 2:4.3.4-4
 
@@ -53,7 +52,6 @@ This class is obsolete. It is provided to keep old source code working. We
 strongly advise against using it in new code. New code should use the Qt Help
 Framework introduced in Qt 4.4 and/or the version of Qt Assistant based on it
 (also introduced in Qt 4.4) instead.
-
 
 %prep
 %setup -q -n qt-assistant-qassistantclient-library-compat-version-%{version}
