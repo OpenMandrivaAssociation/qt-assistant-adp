@@ -1,19 +1,18 @@
-Summary: Compatibility version of Qt Assistant
-Name:    qt-assistant-adp
-Epoch:   4
-Version: 4.6.3
-Release: %mkrel 2
+Summary:	Compatibility version of Qt Assistant
+Name:		qt-assistant-adp
+Epoch:		4
+Version:	4.6.3
+Release:	5
 # See LGPL_EXCEPTIONS.txt, LICENSE.GPL3, respectively, for exception details
-License: LGPLv2 with exceptions or GPLv3 with exceptions
-Group: System/Libraries
-Url: http://qt.nokia.com/doc/4.6/qassistantclient.html
-Source: ftp://ftp.qt.nokia.com/qt/source/qt-assistant-qassistantclient-library-compat-src-%{version}.tar.gz
+License:	LGPLv2 with exceptions or GPLv3 with exceptions
+Group:		System/Libraries
+Url:		http://qt.nokia.com/doc/4.6/qassistantclient.html
+Source:		ftp://ftp.qt.nokia.com/qt/source/qt-assistant-qassistantclient-library-compat-src-%{version}.tar.gz
 # missing header files from Debian (Fathi Boudra)
-Source1: QAssistantClient
-Source2: QtAssistant
+Source1:	QAssistantClient
+Source2:	QtAssistant
 # build fixes from Debian (Fathi Boudra)
-Patch1: 01_build_system.diff
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Patch1:		01_build_system.diff
 BuildRequires: qt4-devel >= 4:4.7.0
 Conflicts: qt4-assistant < 4:4.6.3
 
@@ -27,31 +26,30 @@ New applications should use the new version of Qt Assistant introduced in Qt
 
 %define libqassistant %mklibname qassistant 4
 %package -n %{libqassistant}
-Summary: QT assistant lib
-Group: System/Libraries
-Provides: qassistantlib = %epoch:%version
-Obsoletes: %{_lib}qassistant1 < 2:4.3.4-4
+Summary:	QT assistant lib
+Group:		System/Libraries
+Provides:	qassistantlib = %epoch:%version
+
 
 %description -n %{libqassistant}
 QT assistant lib.
 
 %package devel
-Summary: Development files for the compatibility QAssistantClient
-Group: Development/KDE and Qt
-Requires: %{libqassistant} = %{epoch}:%{version}-%{release}
-Requires: qt4-devel >= 4:4.7.0
-Conflicts: qt4-devel < 4:4.7.0
+Summary:	Development files for the compatibility QAssistantClient
+Group:		Development/KDE and Qt
+Requires:	%{libqassistant} = %{epoch}:%{version}-%{release}
+Requires:	qt4-devel >= 4:4.7.0
 
 %description devel
 This package contains the files necessary to build applications using the
-deprecated QAssistantClient class (in the deprecated QtAssistantClient library),
-which is used together with the legacy Assistant Document Profile (.adp) version
-of Qt Assistant.
+deprecated QAssistantClient class (in the deprecated QtAssistantClient
+library), which is used together with the legacy Assistant Document
+Profile (.adp) version of Qt Assistant.
 
-This class is obsolete. It is provided to keep old source code working. We
-strongly advise against using it in new code. New code should use the Qt Help
-Framework introduced in Qt 4.4 and/or the version of Qt Assistant based on it
-(also introduced in Qt 4.4) instead.
+This class is obsolete. It is provided to keep old source code working. 
+We strongly advise against using it in new code. New code should use the
+Qt Help Framework introduced in Qt 4.4 and/or the version of Qt Assistant
+based on it (also introduced in Qt 4.4) instead.
 
 %prep
 %setup -q -n qt-assistant-qassistantclient-library-compat-version-%{version}
@@ -76,8 +74,6 @@ lrelease assistant_adp_*.ts
 popd
 
 %install
-rm -rf %{buildroot}
-
 # install assistant_adp
 make install INSTALL_ROOT=%{buildroot}
 
@@ -118,25 +114,32 @@ popd
 # viewing anything different. The .adp file needs to be passed on the command
 # line, which is usually done by the application.
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root,-)
 %doc LGPL_EXCEPTION.txt LICENSE.LGPL LICENSE.GPL3
 %{_bindir}/assistant_adp
 %{qt4dir}/translations/*
 %{qt4bin}/assistant_adp
 
 %files -n %{libqassistant}
-%defattr(-,root,root,-)
 %{qt4lib}/libQtAssistantClient.so.4*
 
 %files devel
-%defattr(-,root,root,-)
 %{qt4include}/QtAssistant/
 %{qt4lib}/libQtAssistantClient.so
 %{qt4lib}/libQtAssistantClient_debug.so
 %{qt4lib}/libQtAssistantClient.prl
 %{_libdir}/pkgconfig/QtAssistantClient.pc
 %{qt4dir}/mkspecs/features/assistant.prf
+
+
+%changelog
+* Thu May 05 2011 Oden Eriksson <oeriksson@mandriva.com> 4:4.6.3-2mdv2011.0
++ Revision: 669384
+- mass rebuild
+
+* Sat Jul 31 2010 Funda Wang <fwang@mandriva.org> 4:4.6.3-1mdv2011.0
++ Revision: 563937
+- minor cleanup of spec file
+- import qt-assistant-adp
+
+
