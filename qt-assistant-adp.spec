@@ -1,8 +1,9 @@
+%define debug_package %{nil}
 Summary:	Compatibility version of Qt Assistant
 Name:		qt-assistant-adp
 Epoch:		4
 Version:	4.6.3
-Release:	5
+Release:	6
 # See LGPL_EXCEPTIONS.txt, LICENSE.GPL3, respectively, for exception details
 License:	LGPLv2 with exceptions or GPLv3 with exceptions
 Group:		System/Libraries
