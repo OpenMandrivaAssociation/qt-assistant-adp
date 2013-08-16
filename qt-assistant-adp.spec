@@ -8,7 +8,7 @@ Release:	6
 License:	LGPLv2 with exceptions or GPLv3 with exceptions
 Group:		System/Libraries
 Url:		http://qt.nokia.com/doc/4.6/qassistantclient.html
-Source:		ftp://ftp.qt.nokia.com/qt/source/qt-assistant-qassistantclient-library-compat-src-%{version}.tar.gz
+Source0:	ftp://ftp.qt.nokia.com/qt/source/qt-assistant-qassistantclient-library-compat-src-%{version}.tar.gz
 # missing header files from Debian (Fathi Boudra)
 Source1:	QAssistantClient
 Source2:	QtAssistant
