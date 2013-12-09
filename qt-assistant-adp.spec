@@ -1,4 +1,5 @@
 %define debug_package %{nil}
+
 Summary:	Compatibility version of Qt Assistant
 Name:		qt-assistant-adp
 Epoch:		4
@@ -14,8 +15,8 @@ Source1:	QAssistantClient
 Source2:	QtAssistant
 # build fixes from Debian (Fathi Boudra)
 Patch1:		01_build_system.diff
-BuildRequires: qt4-devel >= 4:4.7.0
-Conflicts: qt4-assistant < 4:4.6.3
+BuildRequires:	qt4-devel >= 4:4.7.0
+Conflicts:	qt4-assistant < 4:4.6.3
 
 %description
 The old version of Qt Assistant, based on Assistant Document Profile (.adp)
@@ -29,8 +30,7 @@ New applications should use the new version of Qt Assistant introduced in Qt
 %package -n %{libqassistant}
 Summary:	QT assistant lib
 Group:		System/Libraries
-Provides:	qassistantlib = %epoch:%version
-
+Provides:	qassistantlib = %{EVRD}
 
 %description -n %{libqassistant}
 QT assistant lib.
@@ -38,8 +38,7 @@ QT assistant lib.
 %package devel
 Summary:	Development files for the compatibility QAssistantClient
 Group:		Development/KDE and Qt
-Requires:	%{libqassistant} = %{epoch}:%{version}-%{release}
-Requires:	qt4-devel >= 4:4.7.0
+Requires:	%{libqassistant} = %{EVRD}
 
 %description devel
 This package contains the files necessary to build applications using the
@@ -53,7 +52,7 @@ Qt Help Framework introduced in Qt 4.4 and/or the version of Qt Assistant
 based on it (also introduced in Qt 4.4) instead.
 
 %prep
-%setup -q -n qt-assistant-qassistantclient-library-compat-version-%{version}
+%setup -qn qt-assistant-qassistantclient-library-compat-version-%{version}
 %patch1 -p1 -b .build_system
 mkdir include
 cp -p %{SOURCE1} %{SOURCE2} include/
@@ -131,16 +130,4 @@ popd
 %{qt4lib}/libQtAssistantClient.prl
 %{_libdir}/pkgconfig/QtAssistantClient.pc
 %{qt4dir}/mkspecs/features/assistant.prf
-
-
-%changelog
-* Thu May 05 2011 Oden Eriksson <oeriksson@mandriva.com> 4:4.6.3-2mdv2011.0
-+ Revision: 669384
-- mass rebuild
-
-* Sat Jul 31 2010 Funda Wang <fwang@mandriva.org> 4:4.6.3-1mdv2011.0
-+ Revision: 563937
-- minor cleanup of spec file
-- import qt-assistant-adp
-
 
