@@ -15,6 +15,7 @@ Source1:	QAssistantClient
 Source2:	QtAssistant
 # build fixes from Debian (Fathi Boudra)
 Patch1:		01_build_system.diff
+BuildRequires:	make
 BuildRequires:	qt4-devel >= 4:4.7.0
 Conflicts:	qt4-assistant < 4:4.6.3
 
